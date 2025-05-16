@@ -8,8 +8,6 @@ const initialState = {
 };
 
 const handleAddToCart = (state, action) => {
-    console.log("action",action.payload);
-    
     const item = action.payload;
     const existing = state.items.find(i => i.id === item.id);
 
