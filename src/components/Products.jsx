@@ -32,9 +32,8 @@ const Products = () => {
 
   
   const handleAddProduct = (item) =>{
-    console.log("Adding product to cart:", item);
     addToCartZustand(item);
-    // dispatch(addToCart(item));
+    dispatch(addToCart(item));
   }
   
   if (loading) {

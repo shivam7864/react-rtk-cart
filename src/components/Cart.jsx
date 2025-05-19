@@ -9,11 +9,10 @@ import {
   decreaseQuantity,
   removeFromCart,
 } from "../app/slice/cartSlice";
-import { shallow } from "zustand/shallow";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  
+
   // const { items, totalQuantity, totalAmount } = useSelector(
   //   (state) => state.cart
   // );
