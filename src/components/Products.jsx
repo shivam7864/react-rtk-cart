@@ -3,12 +3,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../app/slice/cartSlice";
+import useCartStore from "../app/zustandStore";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+
+  //zustand implementation
+  const addToCartZustand = useCartStore(state => state.addToCartZustand);
   
   const handleLoadProducts = async () => {
     setLoading(true);
@@ -26,7 +30,9 @@ const Products = () => {
     handleLoadProducts();
   }, []);
 
+  
   const handleAddProduct = (item) =>{
+    addToCartZustand(item);
     dispatch(addToCart(item));
   }
   
