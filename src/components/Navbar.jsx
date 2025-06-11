@@ -11,6 +11,12 @@ const Navbar = () => {
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 2 }}>
+          <Button color="inherit" component={Link} to="/country">
+            Country
+          </Button>
+          <Button color="inherit" component={Link} to="/country_two">
+            Country2
+          </Button>
           <Button color="inherit" component={Link} to="/">
             Products
           </Button>
