@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../app/slice/cartSlice";
 import useCartStore from "../app/zustandStore";
+import { useNotification } from "../app/context/showNotification";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -11,6 +12,7 @@ const Products = () => {
 
   const dispatch = useDispatch();
 
+  const showNotification = useNotification();
   //zustand implementation
   const addToCartZustand = useCartStore(state => state.addToCartZustand);
   
@@ -34,6 +36,7 @@ const Products = () => {
   const handleAddProduct = (item) =>{
     addToCartZustand(item);
     dispatch(addToCart(item));
+    showNotification('Added to Cart','success')
   }
   
   if (loading) {
