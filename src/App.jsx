@@ -6,6 +6,7 @@ import Products from "./components/Products";
 import Cart from "./components/Cart";
 import Country from "./components/Country";
 import Country2 from "./components/Country2";
+import AddNumbers from "./components/AddNumbers";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/addNumber" element={<AddNumbers />} />
           <Route path="/country" element={<Country />} />
           <Route path="/country_two" element={<Country2 />} />
         </Routes>
