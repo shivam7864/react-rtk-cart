@@ -12,6 +12,12 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
+        {/* It will give access of showNotification in the Products page only not in the cart page */}
+        {/* <NotificationProvider>
+          <Routes>
+            <Route path="/" element={<Products />} />
+          </Routes>
+        </NotificationProvider> */}
         <Routes>
           <Route path="/" element={<Products />} />
           <Route path="/cart" element={<Cart />} />

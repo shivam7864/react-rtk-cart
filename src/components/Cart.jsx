@@ -9,24 +9,25 @@ import {
   decreaseQuantity,
   removeFromCart,
 } from "../app/slice/cartSlice";
+import { useNotification } from "../app/context/showNotification";
 
 const Cart = () => {
   const dispatch = useDispatch();
 
-  // const { items, totalQuantity, totalAmount } = useSelector(
-  //   (state) => state.cart
-  // );
-
-  //Zustand Implementation
-  const items = useCartStore((state) => state.items);
-  const totalQuantity = useCartStore((state) => state.totalQuantity);
-  const totalAmount = useCartStore((state) => state.totalAmount);
-  const addToCartZustand = useCartStore((state) => state.addToCartZustand);
-  const decreaseQuantityZustand = useCartStore(
-    (state) => state.decreaseQuantityZustand
+  const { items, totalQuantity, totalAmount } = useSelector(
+    (state) => state.cart
   );
 
+  //Zustand Implementation
+  // const items = useCartStore((state) => state.items);
+  // const totalQuantity = useCartStore((state) => state.totalQuantity);
+  // const totalAmount = useCartStore((state) => state.totalAmount);
+  // const addToCartZustand = useCartStore((state) => state.addToCartZustand);
+  // const decreaseQuantityZustand = useCartStore(
+  //   (state) => state.decreaseQuantityZustand
+  // );
 
+  const showNotification = useNotification();
   return (
     <Box sx={{ p: 4 }}>
       <h1>Cart</h1>
@@ -42,14 +43,21 @@ const Cart = () => {
               <Button
                 variant="contained"
                 size="small"
-                onClick={() => addToCartZustand(item)} //Justand Implementation for sample
+                // onClick={() => addToCartZustand(item)} //Justand Implementation for sample
+                onClick={()=>{
+                  dispatch(addToCart(item))
+                  showNotification("Quantity Increased",'success')
+                }}
               >
                 +
               </Button>
               <Button
                 variant="outlined"
                 size="small"
-                onClick={() => dispatch(decreaseQuantity(item.id))}
+                onClick={() => {
+                  dispatch(decreaseQuantity(item.id))
+                  showNotification("Quantity decreased",'success')
+                }}
                 // disabled={item.quantity === 1}
               >
                 −
@@ -57,7 +65,10 @@ const Cart = () => {
 
               <Button
                 variant="outlined"
-                onClick={() => dispatch(removeFromCart(item.id))}
+                onClick={() => {
+                  dispatch(removeFromCart(item.id))
+                  showNotification("Removed from Cart",'success')
+                }}
               >
                 Remove
               </Button>
@@ -68,7 +79,10 @@ const Cart = () => {
       )}
       <h3>Total Items: {totalQuantity}</h3>
       <h3>Total Price: ${totalAmount?.toFixed(2)}</h3>
-      <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
+      <button onClick={() => {
+        dispatch(clearCart())
+        showNotification("Cart cleared successfully ",'success')
+      }}>Clear Cart</button>
     </Box>
   );
 };

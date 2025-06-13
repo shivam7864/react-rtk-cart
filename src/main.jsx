@@ -5,12 +5,15 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store,persistor } from "./app/store.js";
 import { PersistGate } from "redux-persist/integration/react";
+import { NotificationProvider } from "./app/context/showNotification.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <App />
+         <NotificationProvider>
+          <App />
+        </NotificationProvider>
       </PersistGate>
     </Provider>
   </StrictMode>
